@@ -21,7 +21,8 @@ _________________
 4.  Extract db file from HL mod using https://github.com/RiotOreO/unrealpak<br>
 Just drop your file in **Unpack.bat**
 _________________
-5. Move this folder to **main/Mods** dir
+5. Move this folder to **main/Mods** dir </br>
+You can add mods you need, script scan all folder
 _________________
 6. Run main.py , It's generate SQL file of differences between the mod and your DB<br>
 You can change it<br>
