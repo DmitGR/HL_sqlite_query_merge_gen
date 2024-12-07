@@ -1,5 +1,7 @@
 # sqlite_query_merge_gen
-Query generator for sqlite database merge
+Query generator for sqlite database merge</br>
+Alternate **Hogwarts Mod Merger**, but base on **your game version** and with the ability to edit the merge</br>
+Simple Manual Version
 
 ## About: This script Help for Hogwarts Legacy modders or mod users generete diffrence between your mod (witch include sqlite db changes) and update your sql db  of your game version.
 ### Req: Python 3.7, 
@@ -38,3 +40,8 @@ _________________
 10. All done drop in HL ~mods Your z_MergedMods
 
 
+## For modders:
+You can genrete **differences_and_updates.sql SQL file** with your mod and source HL DB file ,</br>
+Then you got **Clean and correct changes for all versions of the game**</br>
+How it's done at https://www.nexusmods.com/hogwartslegacy/mods/1987/</br>
+And everyone will be able to do a merge with their versions of the game
