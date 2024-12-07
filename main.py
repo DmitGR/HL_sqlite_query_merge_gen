@@ -9,20 +9,39 @@ def remove_lines_with_substring(file_path, sub_strings):
             lines = file.readlines()
 
         # Filter the lines
-        filtered_lines = []
-        for sub_string in sub_strings:
-            filtered_lines = [line for line in lines if sub_string not in line]
+        filtered_lines = [line for line in lines if not any(sub_string in line for sub_string in sub_strings)]
 
         # Write it back to the file
         with open(file_path, 'w', encoding='utf-8') as file:
             file.writelines(filtered_lines)
 
-        print(f"nes containing '{sub_strings}', have been removed from the file {file_path}.")
+        print(f"Lines containing '{sub_strings}', have been removed from the file {file_path}.")
 
     except FileNotFoundError:
         print(f"File {file_path} not found.")
     except Exception as e:
         print(f"There was an error: {e}")
+
+
+def remove_duplicates_from_file(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+
+        # Удаляем дубликаты, сохраняя порядок строк
+        unique_lines = list(dict.fromkeys(lines))
+
+        # Записываем уникальные строки обратно в файл
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.writelines(unique_lines)
+
+        print(f"Duplicates have been removed from the file: {file_path}")
+    except FileNotFoundError:
+        print(f"File {file_path} not found.")
+    except Exception as e:
+        print(f"Error: {e}")
+
+
 
 
 def generate_update_script(main_db, mod_db, output_file):
@@ -120,7 +139,7 @@ def generate_update_script(main_db, mod_db, output_file):
 open('differences_and_updates.sql', 'w').close()
 # Path to mods_db folder
 folder_path = "mods_db"
-substrings = ["Tutorial", "Game"]  # Change it if you know for sure that this data crashes the start of the game
+substrings = ["Tutorial"]  # Change it if you know for sure that this data crashes the start of the game
 # !Case sensitive!
 
 #  Go through all the files in the mods_db folder
@@ -130,3 +149,5 @@ for root, _, files in os.walk(folder_path):
             mod_file = os.path.join(root, filename)
             generate_update_script("PhoenixShipData.sqlite", mod_file, "differences_and_updates.sql")
             print(f"File processed: {mod_file}")
+
+remove_duplicates_from_file('differences_and_updates.sql')
